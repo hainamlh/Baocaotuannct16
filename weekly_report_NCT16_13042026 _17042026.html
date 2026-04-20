@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Báo cáo kinh doanh tuần — Team NCT16</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#F1EFE8;padding:20px}
+.rpt{max-width:960px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #D3D1C7;padding:0 0 24px}
+.hdr{padding:1.25rem 1.5rem 1rem;border-bottom:3px solid #0C447C;margin-bottom:1.25rem}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start}
+.hdr-tag{font-size:11px;font-weight:700;color:#378ADD;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.hdr-title{font-size:22px;font-weight:700;color:#111}
+.hdr-title span{color:#0C447C}
+.hdr-sub{font-size:12px;color:#5F5E5A;margin-top:5px}
+.hdr-right{text-align:right;font-size:11px;color:#5F5E5A;line-height:1.9}
+.hdr-right strong{color:#111;font-weight:600}
+.pad{padding:0 1.5rem}
+.sec{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888780;margin:1.25rem 0 .5rem;padding-bottom:4px;border-bottom:.5px solid #D3D1C7}
+.kpi4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:.5rem}
+.kpi{background:#F1EFE8;border-radius:6px;padding:.85rem 1rem}
+.kpi-lbl{font-size:11px;color:#888780;margin-bottom:5px}
+.kpi-val{font-size:21px;font-weight:700;color:#111}
+.kpi-sub{font-size:11px;margin-top:4px}
+.mkt3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:.5rem}
+.mkt{background:#F1EFE8;border-radius:6px;padding:.85rem 1rem;border-left:3px solid #0C447C}
+.mkt-lbl{font-size:11px;color:#5F5E5A;margin-bottom:4px}
+.mkt-val{font-size:19px;font-weight:700;color:#0C447C}
+.mkt-sub{font-size:11px;color:#5F5E5A;margin-top:4px}
+.chart-blk{margin-bottom:12px}
+.badge-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;align-items:center}
+.bdg{font-size:11px;padding:2px 8px;border-radius:3px;display:inline-block}
+.bg{background:#FAEEDA;color:#633806}
+.gg{background:#EAF3DE;color:#27500A}
+.bb{background:#E6F1FB;color:#0C447C}
+.lg-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px;font-size:11px;color:#5F5E5A}
+.lg-dot{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
+.tbl-wrap{overflow-x:auto;margin-bottom:.75rem}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:#F1EFE8;color:#5F5E5A;font-size:11px;font-weight:700;padding:6px 8px;text-align:right;border-bottom:2px solid #D3D1C7;white-space:nowrap}
+thead th.l{text-align:left}
+thead th.gc{border-left:2px solid #B5D4F4;background:#E6F1FB;color:#0C447C}
+thead th.gcr{border-right:2px solid #B5D4F4;background:#E6F1FB;color:#0C447C}
+thead th.gc2{border-left:2px solid #9FE1CB;background:#E1F5EE;color:#085041}
+thead th.gcr2{border-right:2px solid #9FE1CB;background:#E1F5EE;color:#085041}
+thead th.grp{text-align:center;background:#E6F1FB;color:#0C447C;border-left:2px solid #B5D4F4;border-right:2px solid #B5D4F4}
+thead th.grp2{text-align:center;background:#E1F5EE;color:#085041;border-left:2px solid #9FE1CB;border-right:2px solid #9FE1CB}
+tbody tr{border-bottom:.5px solid #EEEDE8}
+tbody tr:last-child{font-weight:700;background:#F1EFE8;border-top:1px solid #D3D1C7;border-bottom:none}
+tbody td{padding:6px 8px;color:#222;text-align:right;font-size:12px;white-space:nowrap}
+tbody td.l{text-align:left;color:#888780;font-size:11px}
+tbody td.n{text-align:left;font-size:12px;color:#222}
+tbody td.gc{border-left:2px solid #B5D4F4}
+tbody td.gcr{border-right:2px solid #B5D4F4}
+tbody td.gc2{border-left:2px solid #9FE1CB}
+tbody td.gcr2{border-right:2px solid #9FE1CB}
+.cp{color:#1D9E75;font-size:11px}
+.cn{color:#D85A30;font-size:11px}
+.bnop{background:#E1F5EE;color:#085041;border-radius:3px;padding:1px 5px;font-size:10px}
+.brut{background:#FAECE7;color:#712B13;border-radius:3px;padding:1px 5px;font-size:10px}
+.nxet-list{display:flex;flex-direction:column;gap:8px}
+.nxet-card{border:1px solid #D3D1C7;border-radius:8px;overflow:hidden}
+.nxet-hdr{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;cursor:pointer;user-select:none;background:#F8F7F4}
+.nxet-hdr:hover{background:#F1EFE8}
+.nxet-name{font-size:13px;font-weight:700;color:#222;display:flex;align-items:center;gap:8px}
+.nxet-rank{font-size:10px;padding:2px 8px;border-radius:10px;background:#E6F1FB;color:#0C447C;font-weight:700}
+.nxet-arrow{font-size:11px;color:#888780;transition:transform .2s;flex-shrink:0}
+.nxet-arrow.open{transform:rotate(180deg)}
+.nxet-body{padding:12px 14px;border-top:1px solid #EEEDE8;display:none}
+.nxet-body.open{display:block}
+.nxet-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.nxet-sec-lbl{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;padding-bottom:3px}
+.lbl-pro{color:#0F6E56;border-bottom:1.5px solid #9FE1CB}
+.lbl-con{color:#993C1D;border-bottom:1.5px solid #F0997B}
+.lbl-plan{color:#185FA5;border-bottom:1.5px solid #85B7EB}
+.nxet-items{list-style:none;padding:0;margin:0}
+.nxet-items li{display:flex;gap:7px;font-size:12px;color:#222;line-height:1.5;padding:2px 0}
+.nxet-items li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.nxet-items.pro li::before{background:#1D9E75}
+.nxet-items.con li::before{background:#D85A30}
+.nxet-items.plan li::before{background:#378ADD}
+.footer{background:#F1EFE8;padding:12px 24px;border-top:1px solid #D3D1C7;font-size:11px;color:#888780;margin-top:16px}
+</style>
+</head>
+<body>
+<div class="rpt">
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="hdr-tag">Chi nhánh Nguyễn Công Trứ · Team 16</div>
+      <div class="hdr-title">Báo cáo kinh doanh <span>tuần</span></div>
+      <div class="hdr-sub">13/04/2026 – 17/04/2026 &nbsp;·&nbsp; Lũy kế chu kỳ: 20/03 – 17/04/2026</div>
+    </div>
+    <div class="hdr-right">
+      <div><strong>Lập ngày</strong> 20/04/2026</div>
+      <div><strong>Kỳ báo cáo</strong> Tuần 16/2026</div>
+      <div><strong>Team NCT16</strong>  · 17 thành viên</div>
+    </div>
+  </div>
+</div>
+
+<div class="pad">
+
+<div class="sec">Tổng quan tuần</div>
+<div class="kpi4">
+  <div class="kpi"><div class="kpi-lbl">GTGD tuần này</div><div class="kpi-val">249,4 tỷ</div><div class="kpi-sub" style="color:#1D9E75">▲ so tuần trước: 183,4 tỷ</div></div>
+  <div class="kpi"><div class="kpi-lbl">Phí net tuần này</div><div class="kpi-val">380,1 tr</div><div class="kpi-sub" style="color:#1D9E75">▲ so tuần trước: 297,5 tr</div></div>
+  <div class="kpi"><div class="kpi-lbl">Phí net lũy kế tháng</div><div class="kpi-val">1.219,5 tr</div><div class="kpi-sub" style="color:#888780">20/03 – 17/04/2026</div></div>
+  <div class="kpi"><div class="kpi-lbl">Mở tài khoản tuần</div><div class="kpi-val">19 TK</div><div class="kpi-sub" style="color:#888780">6 NVMG có mở TK mới</div></div>
+</div>
+
+<div class="sec">Thị phần</div>
+<div class="mkt3">
+  <div class="mkt"><div class="mkt-lbl">Thị phần tuần</div><div class="mkt-val">0,0908%</div><div class="mkt-sub">GTGD: <b>249,4 tỷ</b> · BQ: <b>49,9 tỷ/ngày</b></div></div>
+  <div class="mkt"><div class="mkt-lbl">Thị phần tháng (lũy kế)</div><div class="mkt-val">0,0679%</div><div class="mkt-sub">GTGD team: <b>775,8 tỷ</b></div></div>
+  <div class="mkt"><div class="mkt-lbl">Thị phần năm (lũy kế)</div><div class="mkt-val">0,0529%</div><div class="mkt-sub">GTGD team: <b>2.492,6 tỷ</b></div></div>
+</div>
+
+<div class="sec">GTGD theo NVMG — sắp xếp theo lũy kế tháng (tỷ đồng)</div>
+<div class="chart-blk">
+  <div class="badge-row" id="badges-gtgd"></div>
+  <div class="lg-row">
+    <span><span class="lg-dot" style="background:#378ADD"></span>Tuần này</span>
+    <span><span class="lg-dot" style="background:#B4B2A9"></span>Tuần trước</span>
+    <span><span class="lg-dot" style="background:#AFA9EC"></span>Lũy kế tháng</span>
+  </div>
+  <div style="position:relative;width:100%;height:300px"><canvas id="cGTGD" role="img" aria-label="Biểu đồ GTGD 3 kỳ theo lũy kế"></canvas></div>
+</div>
+
+<div class="sec">Phí net theo NVMG — sắp xếp theo lũy kế tháng (triệu đồng)</div>
+<div class="chart-blk">
+  <div class="badge-row" id="badges-phi"></div>
+  <div class="lg-row">
+    <span><span class="lg-dot" style="background:#1D9E75"></span>Tuần này</span>
+    <span><span class="lg-dot" style="background:#B4B2A9"></span>Tuần trước</span>
+    <span><span class="lg-dot" style="background:#AFA9EC"></span>Lũy kế tháng</span>
+  </div>
+  <div style="position:relative;width:100%;height:300px"><canvas id="cPhi" role="img" aria-label="Biểu đồ phí net 3 kỳ theo lũy kế"></canvas></div>
+</div>
+
+<div class="sec">Nộp/rút ròng trong tuần (tỷ đồng)</div>
+<div class="chart-blk">
+  <div class="badge-row" id="badges-nr"></div>
+  <div style="position:relative;width:100%;height:260px"><canvas id="cNR" role="img" aria-label="Biểu đồ nộp rút ròng"></canvas></div>
+</div>
+
+<div class="sec">Chi tiết theo NVMG — sắp xếp theo GTGD lũy kế</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th class="l" rowspan="2" style="width:34px">Mã</th>
+      <th class="l" rowspan="2" style="width:130px">Họ tên</th>
+      <th class="grp" colspan="3">Tuần này (13–17/04)</th>
+      <th class="grp2" colspan="2">Lũy kế (20/03–17/04)</th>
+    </tr>
+    <tr>
+      <th class="gc">GTGD (tỷ)</th>
+      <th style="width:58px">+/–</th>
+      <th class="gcr">Phí net (tr)</th>
+      <th class="gc2">GTGD (tỷ)</th>
+      <th class="gcr2">Phí net (tr)</th>
+    </tr>
+  </thead>
+  <tbody id="tbody-main"></tbody>
+</table>
+</div>
+
+<div class="sec">Nộp/rút tiền trong tuần (tỷ đồng)</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr>
+    <th class="l" style="width:34px">Mã</th>
+    <th class="l" style="width:138px">Họ tên</th>
+    <th>Tổng nộp (tỷ)</th><th>Tổng rút (tỷ)</th><th>Nộp ròng (tỷ)</th>
+  </tr></thead>
+  <tbody id="tbody-nr"></tbody>
+</table>
+</div>
+
+<div class="sec">Mở tài khoản mới (11–17/04/2026)</div>
+<div class="tbl-wrap">
+<table style="max-width:360px">
+  <thead><tr><th class="l">Họ tên NVMG</th><th style="width:90px">Số TK</th></tr></thead>
+  <tbody id="tbody-motk"></tbody>
+</table>
+</div>
+
+<div class="sec">Nhận xét &amp; kế hoạch tuần sau theo thành viên</div>
+<div class="nxet-list" id="nxet-list"></div>
+
+</div>
+
+<div class="footer">Báo cáo tổng hợp tự động từ dữ liệu hệ thống &nbsp;|&nbsp; Team NCT16 – Chi nhánh Nguyễn Công Trứ &nbsp;|&nbsp; 20/04/2026</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const nameMap={'2771':'Nguyễn Anh Tuấn','1968':'Ng.T.Phương Trinh','2366':'Lê Viết Trọng','1791':'Nguyễn Huy Bình','2116':'Võ Thanh Quang','2615':'Ng.T.Thủy Tiên','2272':'Nguyễn Hải Nam','1444':'Nguyễn Gia Kiều','1537':'Võ T.Thanh Tâm','1566':'Trương Văn Nam','1967':'Thái H.Mai Vy','1952':'Phan T.Gia Bảo','2554':'Phạm Minh Đức','2878':'Đinh Thành Bảo','1366':'Đặng Hà Trang','3114':'Trần Phước Lâm','3116':'Huỳnh Thị Vững'};
+const tuanNay={'1968':92396323750,'2366':34036324050,'2116':22394431800,'2272':18422262450,'1791':17365386170,'2771':13606942800,'1444':10079372800,'1566':9917644200,'2615':7752804300,'1952':4707730550,'3114':4537640000,'1537':4245987500,'1366':3131926800,'2878':2888126000,'1967':1686605800,'2554':1538033700,'3116':669588750};
+const tuanTruoc={'1968':45112232300,'2771':29612237800,'2366':23527946850,'2116':16967497120,'1791':12260356400,'1444':11870236000,'2615':10625477750,'2272':8551150050,'1537':5231819300,'1967':3479336520,'1566':3358452400,'1366':3309704950,'1952':3039217100,'2554':2294845400,'2878':1862503000,'3114':1459287330,'3116':851473500};
+const phiNetTuan={'1968':113829599,'2366':47519259,'2116':29503709,'2272':28504407,'1791':35472792,'2771':25645113,'1444':14905279,'1566':20625588,'2615':17188344,'1952':7843285,'3114':10118939,'1537':9033008,'1366':5966269,'2878':5805973,'1967':3761131,'2554':3429814,'3116':965846};
+const phiNetTT={'1968':56180379,'2771':54123881,'2366':32625754,'2116':24717109,'1791':26460472,'1444':17608638,'2615':23317836,'2272':13636431,'1537':10617206,'1967':7700872,'1566':6527463,'1366':5495041,'1952':5093175,'2554':5117510,'2878':3621847,'3114':3254211,'3116':1366295};
+const luyKe={'1968':221315062800,'2366':103856639500,'2116':77452156870,'2771':70720277280,'1791':56938758020,'2272':53327142550,'1444':39328541640,'2615':31006132450,'1566':23540897700,'1952':19320080000,'1366':18692775050,'1537':16958513450,'1967':12848515320,'2554':10100204600,'2878':7385348050,'3114':6721850330,'3116':6299878450};
+const phiLK={'1968':275576116,'2366':142948277,'2116':105562812,'2771':125008580,'1791':118437525,'2272':83629050,'1444':59137533,'2615':68632378,'1566':49937989,'1952':29860262,'1366':34844978,'1537':35432003,'1967':28498248,'2554':22002199,'2878':14422783,'3114':14989736,'3116':10558331};
+const nopRut={'1366':{nop:62131000,rut:89131000,net:-27000000},'1444':{nop:552370000,rut:796240000,net:-243870000},'1537':{nop:100122000,rut:159829000,net:-59707000},'1566':{nop:3757809995,rut:518000000,net:3239809995},'1791':{nop:286000000,rut:162498000,net:123502000},'1952':{nop:706778421,rut:1065261928,net:-358483507},'1967':{nop:5000000,rut:1164300000,net:-1159300000},'1968':{nop:268100000,rut:301249705,net:-33149705},'2116':{nop:6079890000,rut:2580754541,net:3499135459},'2272':{nop:1237900000,rut:1349000000,net:-111100000},'2366':{nop:1495362842,rut:3178580808,net:-1683217966},'2554':{nop:620000000,rut:63665776,net:556334224},'2615':{nop:67115657,rut:220000000,net:-152884343},'2771':{nop:257832460,rut:312969999,net:-55137539},'2878':{nop:280000,rut:6100000,net:-5820000},'3114':{nop:75599994,rut:74438439,net:1161555},'3116':{nop:201130000,rut:473701000,net:-272571000}};
+const moTK={'1366':1,'1444':1,'2272':1,'2366':11,'3114':3,'3116':2};
+
+const f1=v=>(v/1e9).toFixed(1);
+const ftr=v=>(v/1e6).toFixed(1);
+const fty=v=>(v/1e9).toFixed(2);
+const nvList=Object.keys(nameMap);
+const byLK=[...nvList].sort((a,b)=>(luyKe[b]||0)-(luyKe[a]||0));
+const byPhiLK=[...nvList].sort((a,b)=>(phiLK[b]||0)-(phiLK[a]||0));
+const nrSorted=[...nvList].filter(m=>nopRut[m]).sort((a,b)=>nopRut[b].net-nopRut[a].net);
+const sortedGrowth=[...nvList].filter(m=>tuanTruoc[m]>0).sort((a,b)=>((tuanNay[b]||0)-(tuanTruoc[b]||0))/(tuanTruoc[b]||1)-((tuanNay[a]||0)-(tuanTruoc[a]||0))/(tuanTruoc[a]||1));
+const top1g=sortedGrowth[0];
+const gp=((tuanNay[top1g]||0)-(tuanTruoc[top1g]||0))/(tuanTruoc[top1g]||1)*100;
+const top3nop=nrSorted.filter(m=>nopRut[m].net>0).slice(0,3);
+
+const bdG=document.getElementById('badges-gtgd');
+bdG.innerHTML='<span style="font-size:11px;color:#5F5E5A">Top 3 lũy kế:</span>';
+byLK.slice(0,3).forEach((m,i)=>bdG.innerHTML+=`<span class="bdg bg">${['#1','#2','#3'][i]} ${nameMap[m]} (${f1(luyKe[m])} tỷ)</span>`);
+bdG.innerHTML+=`<span class="bdg gg">Tăng trưởng #1: ${nameMap[top1g]} (+${gp.toFixed(0)}%)</span>`;
+const bdP=document.getElementById('badges-phi');
+bdP.innerHTML='<span style="font-size:11px;color:#5F5E5A">Top 3 phí lũy kế:</span>';
+byPhiLK.slice(0,3).forEach((m,i)=>bdP.innerHTML+=`<span class="bdg bg">${['#1','#2','#3'][i]} ${nameMap[m]} (${ftr(phiLK[m])} tr)</span>`);
+const bdNR=document.getElementById('badges-nr');
+bdNR.innerHTML='<span style="font-size:11px;color:#5F5E5A">Top nộp ròng:</span>';
+top3nop.forEach((m,i)=>bdNR.innerHTML+=`<span class="bdg bb">${['#1','#2','#3'][i]} ${nameMap[m]} (+${fty(nopRut[m].net)} tỷ)</span>`);
+
+const dlPlugin={id:'dl',afterDatasetsDraw(chart){
+  const ctx=chart.ctx;
+  chart.data.datasets.forEach((ds,di)=>{
+    if(ds._skip) return;
+    const meta=chart.getDatasetMeta(di);
+    if(meta.hidden) return;
+    meta.data.forEach((bar,i)=>{
+      const v=ds.data[i]; if(!v) return;
+      ctx.save();ctx.font='bold 8.5px Arial';ctx.fillStyle=ds._lc||'#333';ctx.textAlign='center';
+      ctx.fillText(v.toFixed(1),bar.x,bar.y-4);ctx.restore();
+    });
+  });
+}};
+
+new Chart(document.getElementById('cGTGD'),{type:'bar',data:{labels:byLK.map(m=>nameMap[m]),datasets:[
+  {label:'Tuần này',data:byLK.map(m=>(tuanNay[m]||0)/1e9),backgroundColor:'#378ADD',_lc:'#185FA5'},
+  {label:'Tuần trước',data:byLK.map(m=>(tuanTruoc[m]||0)/1e9),backgroundColor:'#B4B2A9',_skip:true},
+  {label:'Lũy kế',data:byLK.map(m=>(luyKe[m]||0)/1e9),backgroundColor:'#AFA9EC',_lc:'#3C3489'},
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} tỷ`}}},scales:{x:{ticks:{font:{size:9},autoSkip:false,maxRotation:32},grid:{display:false}},y:{ticks:{font:{size:10},callback:v=>v+'tỷ'},grid:{color:'rgba(136,135,128,.15)'},grace:'15%'}},layout:{padding:{top:16}}},plugins:[dlPlugin]});
+
+new Chart(document.getElementById('cPhi'),{type:'bar',data:{labels:byPhiLK.map(m=>nameMap[m]),datasets:[
+  {label:'Tuần này',data:byPhiLK.map(m=>(phiNetTuan[m]||0)/1e6),backgroundColor:'#1D9E75',_lc:'#0F6E56'},
+  {label:'Tuần trước',data:byPhiLK.map(m=>(phiNetTT[m]||0)/1e6),backgroundColor:'#B4B2A9',_skip:true},
+  {label:'Lũy kế',data:byPhiLK.map(m=>(phiLK[m]||0)/1e6),backgroundColor:'#AFA9EC',_lc:'#3C3489'},
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} tr`}}},scales:{x:{ticks:{font:{size:9},autoSkip:false,maxRotation:32},grid:{display:false}},y:{ticks:{font:{size:10},callback:v=>v+'tr'},grid:{color:'rgba(136,135,128,.15)'},grace:'15%'}},layout:{padding:{top:16}}},plugins:[dlPlugin]});
+
+const nrColors=nrSorted.map(m=>nopRut[m].net>=0?'#1D9E75':'#D85A30');
+new Chart(document.getElementById('cNR'),{type:'bar',data:{labels:nrSorted.map(m=>nameMap[m]),datasets:[{label:'Nộp ròng',data:nrSorted.map(m=>+(nopRut[m].net/1e9).toFixed(3)),backgroundColor:nrColors}]},
+options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`Net: ${ctx.parsed.y.toFixed(3)} tỷ`}}},scales:{x:{ticks:{font:{size:9},autoSkip:false,maxRotation:32},grid:{display:false}},y:{ticks:{font:{size:10},callback:v=>v+'tỷ'},grid:{color:'rgba(136,135,128,.15)'},grace:'15%'}},layout:{padding:{top:16}}},
+plugins:[{id:'dlNR',afterDatasetsDraw(chart){const ctx=chart.ctx,meta=chart.getDatasetMeta(0);meta.data.forEach((bar,i)=>{const v=chart.data.datasets[0].data[i];ctx.save();ctx.font='bold 8.5px Arial';ctx.fillStyle=v>=0?'#0F6E56':'#993C1D';ctx.textAlign='center';ctx.fillText(v.toFixed(2),bar.x,v>=0?bar.y-4:bar.y+13);ctx.restore();});}}]});
+
+const tbody=document.getElementById('tbody-main');
+let tTN=0,tTT=0,tPN=0,tLK=0,tPLK=0;
+byLK.forEach(m=>{
+  const tn=tuanNay[m]||0,tt=tuanTruoc[m]||0,pn=phiNetTuan[m]||0,lk=luyKe[m]||0,plk=phiLK[m]||0;
+  tTN+=tn;tTT+=tt;tPN+=pn;tLK+=lk;tPLK+=plk;
+  const chg=tt>0?((tn-tt)/tt*100):null;
+  const chgH=chg!==null?`<span class="${chg>=0?'cp':'cn'}">${chg>=0?'▲':'▼'}${Math.abs(chg).toFixed(0)}%</span>`:'—';
+  tbody.innerHTML+=`<tr><td class="l">${m}</td><td class="n">${nameMap[m]}</td><td class="gc">${f1(tn)}</td><td style="text-align:center">${chgH}</td><td class="gcr">${ftr(pn)}</td><td class="gc2">${f1(lk)}</td><td class="gcr2">${ftr(plk)}</td></tr>`;
+});
+const tc=(tTN-tTT)/tTT*100;
+tbody.innerHTML+=`<tr><td class="l" colspan="2">TỔNG</td><td class="gc">${f1(tTN)}</td><td style="text-align:center"><span class="${tc>=0?'cp':'cn'}">${tc>=0?'▲':'▼'}${Math.abs(tc).toFixed(0)}%</span></td><td class="gcr">${ftr(tPN)}</td><td class="gc2">${f1(tLK)}</td><td class="gcr2">${ftr(tPLK)}</td></tr>`;
+
+const tbodyNR=document.getElementById('tbody-nr');
+let tNop=0,tRut=0;
+nrSorted.forEach(m=>{
+  const d=nopRut[m];tNop+=d.nop;tRut+=d.rut;
+  const nb=d.net>=0?`<span class="bnop">+${fty(d.net)}</span>`:`<span class="brut">${fty(d.net)}</span>`;
+  tbodyNR.innerHTML+=`<tr><td class="l">${m}</td><td class="n">${nameMap[m]}</td><td>${fty(d.nop)}</td><td>${fty(d.rut)}</td><td>${nb}</td></tr>`;
+});
+const tNet=tNop-tRut;
+tbodyNR.innerHTML+=`<tr><td class="l" colspan="2">TỔNG</td><td>${fty(tNop)}</td><td>${fty(tRut)}</td><td>${tNet>=0?`<span class="bnop">+${fty(tNet)}</span>`:`<span class="brut">${fty(tNet)}</span>`}</td></tr>`;
+
+const tbodyMT=document.getElementById('tbody-motk');
+Object.keys(nameMap).map(m=>({m,cnt:moTK[m]||0})).sort((a,b)=>b.cnt-a.cnt).forEach(({m,cnt})=>{
+  const s=cnt===0?'color:#888780':'';
+  tbodyMT.innerHTML+=`<tr><td class="l" style="${s}">${nameMap[m]} (${m})</td><td style="${s};font-weight:${cnt?700:400}">${cnt||'—'}</td></tr>`;
+});
+tbodyMT.innerHTML+=`<tr><td class="l">TỔNG</td><td style="font-weight:700">19</td></tr>`;
+
+const lkRank=byLK.reduce((acc,m,i)=>{acc[m]=i+1;return acc},{});
+const nxetData=[
+  {ma:'2272',ten:'Nguyễn Hải Nam',pro:['Trao đổi kế hoạch đào tạo với Trọng','Trao đổi kế hoạch sale với Thành Bảo, Gia Kiều','Tư vấn KH bán chốt hàng lướt sóng','Làm chương trình kiến tập, tạo room 100 sinh viên năm 3'],con:['Khai thác tệp KH mới còn ít','Khách đúng mục tiêu còn ít'],plan:['Tư vấn KH chờ đợi','Hẹn gặp KH lớn','Gặp nhân sự CTCK khác','Tiếp tục thực hiện chương trình kiến tập']},
+  {ma:'2366',ten:'Lê Viết Trọng',pro:['Mở TK vẫn duy trì và như mục tiêu đề ra','Kết nối thêm với các KHTN và có thêm KH sắp về','Duy trì giao dịch ổn'],con:['Chưa có về thêm NAV như mục tiêu','Chưa có thêm KH vào Room như mục tiêu đề ra','Chưa hỗ trợ thêm các bạn mở TK và kéo NAV như mục tiêu'],plan:['Tiếp tục đẩy mạnh mở TK, thêm 2 KH về và kéo thêm NAV','Hỗ trợ Bảo, Vững chăm Room và kéo thêm NAV','Hỗ trợ Tuyến tìm KH từ Zalo và tiếp tục Livestream dần']},
+  {ma:'1566',ten:'Trương Văn Nam',pro:['Có KH nạp tiền','Tư vấn các KH mua vào','Tương tác và tư vấn mua mới cho anh Hùng KHTN'],con:['Người vào room còn thấp'],plan:['Tăng thêm NĐT vào room','Giữ liên lạc với anh Hùng','Tư vấn điểm mua mới cho các KH và KHTN','Tìm kiếm 20 NĐT mới vào room']},
+  {ma:'1366',ten:'Đặng Hà Trang',pro:['Chị Thuỳ cởi mở trao đổi hơn về nhu cầu và kế hoạch'],con:['Chưa có thêm KHTN','Chưa active được KH','Chưa gửi mail đúng kế hoạch','1 nick zalo bị khoá'],plan:['Thêm data và gửi mail','Chuẩn bị kế hoạch cụ thể hơn cho chị Thuỳ giao dịch - phương pháp đầu tư','Tìm cơ hội và gửi khuyến nghị cho KH qua app']},
+  {ma:'1444',ten:'Nguyễn Gia Kiều',pro:['Được KH giới thiệu 1 KH'],con:['Chưa đủ KHTN','Chưa active lại TK Anh Thành','Chưa viết xong bản tin'],plan:['Viết bản tin','Hẹn gặp 2 KH','Mở 1 TK mới','Active lại Anh Thành KH cũ']},
+  {ma:'1537',ten:'Võ T.Thanh Tâm',pro:['Gặp KH Chị Quyên hướng dẫn về thị trường'],con:['Anh Nhượng chưa active lại TK được','Chưa hoàn thành xong bản tin'],plan:['Có 1 TK mới','Có 1 bản tin','Tiếp tục active Anh Nhượng, trao đổi về cơ hội','Tư vấn Anh Dũng về TCB']},
+  {ma:'1952',ten:'Phan T.Gia Bảo',pro:['Tương tác, hẹn gặp KH cũ','Gặp 2 khách hàng','Có 2 KH tham gia room'],con:['Chưa giao dịch mạnh','Chưa mở TK mới'],plan:['Gửi Inforbip','Gửi data zalo','Hẹn gặp 3 khách hàng']},
+  {ma:'2554',ten:'Phạm Minh Đức',pro:['Gặp 2 khách hàng hiện hữu tại ĐHCĐ','Gặp 2 khách hàng tiềm năng trình bày tình hình thị trường'],con:['Chưa có TK mới','Chưa có nhiều giao dịch'],plan:['Hẹn gặp 5 khách, gặp tiếp 3 khách mới']},
+  {ma:'2615',ten:'Ng.T.Thủy Tiên',pro:['GTGD kết tháng có tốt hơn tháng trước','Các KHTN vẫn giữ tương tác hỏi ý kiến mua/bán','Có 5 KH mới vào room zalo'],con:['Lượng KH giao dịch vẫn còn ít, chưa active được','Chưa có KHTN mới'],plan:['Sale tiếp Zalo sản phẩm M+','Thêm được 10 KH mới vào room','Cập nhật tương tác tiếp với KHTN và cập nhật room','Active thêm KH giao dịch']},
+  {ma:'2878',ten:'Đinh Thành Bảo',pro:['Gửi zalo bằng số nick 6 có tỷ lệ phản hồi cao: 5 người/ngày','Nhắn tin cho 5 KHHH → Hẹn gặp 1 KH','Biết cách nhắn tin cho KH tương tác nhiều'],con:['Doanh số tháng này thấp','Chưa tìm kiếm được các cơ hội tốt nhất cho KH','Chưa đủ 10–15 KHTN'],plan:['Tăng thêm 3–4 KHTN','Hẹn gặp 3 KH','Tìm kiếm cơ hội trong thị trường giảm để sale KH']},
+  {ma:'3114',ten:'Trần Phước Lâm',pro:['Gửi tin nhắn Zalo có hiệu quả, hơn 30 người vào room trong 1 tuần','Cơ cấu danh mục cho chị Hạnh, chị Lam Trà và chị Hồng','Đã bắt đầu Live Tiktok'],con:['Anh Thạch chưa chuyển ID về','Chưa tư vấn được cơ hội cho KH'],plan:['Tiếp tục duy trì gửi tin nhắn Zalo','Tăng tần suất Live Tiktok','Duy trì đăng clip Tiktok hằng ngày','Lọc CP hàng ngày và khuyến nghị KH','Viết bài Substack mỗi tuần']},
+  {ma:'3116',ten:'Huỳnh Thị Vững',pro:['Add zalo đều và có KH vô Room','Số lượng KH tiềm năng tăng thêm'],con:['Livestream chưa có người vô room','Chưa rành kỹ năng sale + chăm sóc KH'],plan:['Chăm riêng 5 KH tiềm năng + kết nối KH mới','Mở mới 7 TK còn lại','Tăng thêm NAV ở KH hiện hữu']},
+];
+
+const list=document.getElementById('nxet-list');
+nxetData.forEach(p=>{
+  const rank=lkRank[p.ma]||'—';
+  const proHTML=p.pro.map(x=>`<li>${x}</li>`).join('');
+  const conHTML=p.con.map(x=>`<li>${x}</li>`).join('');
+  const planHTML=p.plan.map(x=>`<li>${x}</li>`).join('');
+  const card=document.createElement('div');
+  card.className='nxet-card';
+  card.innerHTML=`
+    <div class="nxet-hdr" onclick="toggleCard(this)">
+      <div class="nxet-name"><span>${p.ten}</span><span class="nxet-rank">#${rank} lũy kế</span></div>
+      <span class="nxet-arrow open">▼</span>
+    </div>
+    <div class="nxet-body open">
+      <div class="nxet-cols">
+        <div><div class="nxet-sec-lbl lbl-pro">Ưu điểm</div><ul class="nxet-items pro">${proHTML}</ul></div>
+        <div><div class="nxet-sec-lbl lbl-con">Nhược điểm</div><ul class="nxet-items con">${conHTML}</ul></div>
+        <div><div class="nxet-sec-lbl lbl-plan">Kế hoạch tuần sau</div><ul class="nxet-items plan">${planHTML}</ul></div>
+      </div>
+    </div>`;
+  list.appendChild(card);
+});
+
+function toggleCard(hdr){
+  const body=hdr.nextElementSibling;
+  const arrow=hdr.querySelector('.nxet-arrow');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open');
+  body.style.display=isOpen?'none':'block';
+  arrow.classList.toggle('open');
+}
+</script>
+</body>
+</html>
